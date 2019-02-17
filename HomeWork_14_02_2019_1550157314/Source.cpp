@@ -59,35 +59,33 @@ void fillArray2Spiral(int arr2[][30], int n, int m)
 			for (j = m - k - 1; j >= k; j--) if (i == n - k - 1 && j != m - k - 1) arr2[i][j] = count++; // нижн строка
 		}
 		for (i = n - k - 1; i > k; i--) if (i != n - k - 1 && i != j) arr2[i][j = k] = count++; // верт левый столбец
-		if (m % 2 != 0) arr2[n / 2][m / 2] = count;
+		if (m % 2 != 0) arr2[n / 2][m / 2] = count; // заполнение центра при нечетном размере матрицы
 		k++;
 	}
 	cout << endl;
 }
 
-void fillArray2SpiralR(int arr2[][30], int n, int m)
+int fillArray2SpiralR(int arr2[][30], int n, int m)
 {
-	int count = 1;
-	int i, j, k = 0;
-
+	static int count = 1, k = 0;
+	int i, j;
 	i = k;
 	j = k;
+	
+	if (k == 5) return 0;
 
-	while (k != m / 2)
-	{
-		for (i = k; i < n - k; i++)
+		for (i = k; i < n; i++)
 		{
-			for (j = k; j < m - k; j++) if (i == k) arr2[i][j] = count++; // верх строка 
-			for (j = k; j < m - k; j++)	if (i != k && i < n - k && j == m - k - 1) arr2[i][j] = count++; // верт правый столбец	
-			for (j = m - k - 1; j >= k; j--) if (i == n - k - 1 && j != m - k - 1) arr2[i][j] = count++; // нижн строка
+			for (j = k; j < m; j++) if (i == k) arr2[i][j] = count++; // верх строка 
+			for (j = k; j < m; j++)	if (i != k && i < n && j == m - 1) arr2[i][j] = count++; // верт правый столбец	
+			for (j = m - 1; j >= k; j--) if (i == n - 1 && j != m- 1) arr2[i][j] = count++; // нижн строка
 		}
-		for (i = n - k - 1; i > k; i--) if (i != n - k - 1 && i != j) arr2[i][j = k] = count++; // верт левый столбец
-		if (m % 2 != 0) arr2[n / 2][m / 2] = count;
+		for (i = n - 1; i > k; i--) if (i != n - 1 && i != j) arr2[i][j = k] = count++; // верт левый столбец
+		//if (k == 0 && n % 2 != 0) arr2[n / 2][m / 2] = n * m; // заполнение центра при нечетном размере матрицы
 		k++;
-	}
-	cout << endl;
+		
+		fillArray2SpiralR(arr2, n-k, m-k);
 }
-
 
 
 void printArray2(int arr2[][30], int n, int m)
@@ -135,17 +133,18 @@ void Task2()
 	cout << "\n--------------------------------------------------------------------------\n\nTask2\n\n";
 	SetConsoleTextAttribute(hConsole, 7);
 
-	int n, m;
+	int n=0, m=0, k = 0;
 	int arr2[30][30] = { 0 };
-
+	
+	
 	cout << "Введите размер квадратной матрицы -> ";
 	cin >> n;
 	m = n;
-
-	//printArray2(arr2, n, m);
-	fillArray2Spiral(arr2, n, m);
-	printArray2(arr2, n, m);
 	
+	//printArray2(arr2, n, m);
+	//fillArray2Spiral(arr2, n, m);
+	fillArray2SpiralR(arr2, n, m);
+	printArray2(arr2, n, m);
 }
 
 
