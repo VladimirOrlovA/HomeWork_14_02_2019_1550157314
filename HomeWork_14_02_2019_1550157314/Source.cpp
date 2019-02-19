@@ -23,28 +23,19 @@ void printArray(int arr[], int n)
 	for (int i = 0; i < n; i++)
 	{
 		cout<<arr[i]<<"\t";
-		sum += arr[i];
-
-		if (count % 10 == 0)
-		{
-			cout << endl << "sum= " << sum << endl << endl;
-			sum = 0;
-		}
-	
 		count++;
 	}
 }
 
 int minSumTen(int arr[], int n, int start, int step)
 {
-	static int i = 0, ind = 0;
+	static int ind = 0;
 	static int sum=0, sumb = INT_MAX;
 
 	if (step >= n) return ind;
 	
-		
 		sum = 0;
-		for (i=start; i < step; i++)
+		for (int i = start; i < step; i++)
 		{
 			sum += arr[i];
 		} 
@@ -52,10 +43,10 @@ int minSumTen(int arr[], int n, int start, int step)
 		if (sum < sumb)
 		{
 			sumb = sum;
-			ind = i;
-			minSumTen(arr, n, start++, step + 1);
+			ind = start;
+			minSumTen(arr, n, start + 1, step + 1);
 		}
-		else minSumTen(arr, n, start++, step + 1);
+		else minSumTen(arr, n, start + 1, step + 1);
 }
 
 
@@ -85,20 +76,17 @@ void fillArray2Spiral(int arr2[][30], int n, int m)
 
 int fillArray2SpiralR(int arr2[][30], int n, int m)
 {
-	static int count = 1, k = 0, c=1;
+	static int count = 1, k = 0;
 	int i, j;
 	i = k;
 	j = k;
-	
-	
-	c++;
 
 	if (k == n/2+1)
 	{
 		count = 1;
 		k = 0;
 		cout << endl;
-		return c;
+		return 0;
 	}
 
 	for (i = k; i < n - k; i++)
@@ -136,7 +124,7 @@ void Task1()
 	cout << "\n--------------------------------------------------------------------------\n\nTask1\n\n";
 	SetConsoleTextAttribute(hConsole, 7);
 
-	int n = 0, i = 0, step = 10;
+	int n = 0, start = 0, step = 10;
 	int arr[100] = { 0 };
 	
 
@@ -145,9 +133,7 @@ void Task1()
 	cout << endl;
 
 	fillArray(arr, n);
-	printArray(arr, n);
-	cout << minSumTen(arr, n, i, step);
-	
+	cout << minSumTen(arr, n, start, step);
 }
 
 void Task2()
@@ -174,7 +160,7 @@ void Task2()
 	
 	//printArray2(arr2, n, m);
 	//fillArray2Spiral(arr2, n, m);
-	cout<<fillArray2SpiralR(arr2, n, m)<<endl;
+	fillArray2SpiralR(arr2, n, m);
 	printArray2(arr2, n, m);
 	
 	
