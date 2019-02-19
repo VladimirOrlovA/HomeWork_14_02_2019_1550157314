@@ -47,7 +47,7 @@ int minSumTen(int arr[], int n, int start, int step)
 		for (i=start; i < step; i++)
 		{
 			sum += arr[i];
-		}
+		} 
 		
 		if (sum < sumb)
 		{
