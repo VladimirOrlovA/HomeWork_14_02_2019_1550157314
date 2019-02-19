@@ -43,7 +43,7 @@ int minSumTen(int arr[], int n, int start, int step)
 	if (step >= n) return ind;
 	
 		
-	sum = 0;
+		sum = 0;
 		for (i=start; i < step; i++)
 		{
 			sum += arr[i];
