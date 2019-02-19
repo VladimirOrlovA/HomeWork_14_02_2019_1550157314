@@ -40,10 +40,11 @@ int minSumTen(int arr[], int n, int i, int step)
 	static int ind=0;
 	static int sum=0, sumb = INT_MAX;
 
-	if (i > n-step) return ind;
+	if (step >= n) return ind;
 	
-		sum = 0;
-		for (i; i < step+i; i++)
+		
+	sum = 0;
+		for (i; i < step; i++)
 		{
 			sum += arr[i];
 		}
@@ -52,9 +53,9 @@ int minSumTen(int arr[], int n, int i, int step)
 		{
 			sumb = sum;
 			ind = i;
+			minSumTen(arr, n, i++, step + 1);
 		}
-	
-	minSumTen(arr, n, i+1, step);
+		else minSumTen(arr, n, i++, step + 1);
 }
 
 
