@@ -35,16 +35,16 @@ void printArray(int arr[], int n)
 	}
 }
 
-int minSumTen(int arr[], int n, int i, int step)
+int minSumTen(int arr[], int n, int start, int step)
 {
-	static int ind=0;
+	static int i = 0, ind = 0;
 	static int sum=0, sumb = INT_MAX;
 
 	if (step >= n) return ind;
 	
 		
 	sum = 0;
-		for (i; i < step; i++)
+		for (i=start; i < step; i++)
 		{
 			sum += arr[i];
 		}
@@ -53,9 +53,9 @@ int minSumTen(int arr[], int n, int i, int step)
 		{
 			sumb = sum;
 			ind = i;
-			minSumTen(arr, n, i++, step + 1);
+			minSumTen(arr, n, start++, step + 1);
 		}
-		else minSumTen(arr, n, i++, step + 1);
+		else minSumTen(arr, n, start++, step + 1);
 }
 
 
