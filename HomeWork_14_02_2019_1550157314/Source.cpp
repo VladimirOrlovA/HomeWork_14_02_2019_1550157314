@@ -85,16 +85,20 @@ void fillArray2Spiral(int arr2[][30], int n, int m)
 
 int fillArray2SpiralR(int arr2[][30], int n, int m)
 {
-	static int count = 1, k = 0;
+	static int count = 1, k = 0, c=1;
 	int i, j;
 	i = k;
 	j = k;
 	
-	if (k == 6)
+	
+	c++;
+
+	if (k == n/2+1)
 	{
 		count = 1;
 		k = 0;
-		return 0;
+		cout << endl;
+		return c;
 	}
 
 	for (i = k; i < n - k; i++)
@@ -170,7 +174,7 @@ void Task2()
 	
 	//printArray2(arr2, n, m);
 	//fillArray2Spiral(arr2, n, m);
-	fillArray2SpiralR(arr2, n, m);
+	cout<<fillArray2SpiralR(arr2, n, m)<<endl;
 	printArray2(arr2, n, m);
 	
 	
